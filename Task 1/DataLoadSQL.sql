@@ -36,19 +36,20 @@ FROM sandbox.stageEventData
 
 
 -----------------------------------Temporary Table Creation with some transformations---------------------------------------------------------------
----Aggregated the event data on user_id and week number 
+---Aggregated the event data on user_id and week number
+Drop table if exists  sandbox.temp_reporting;
 create table sandbox.temp_reporting as
 select Event.user_id,
-Event.week_num
+Event.week_num,
 Userdata.provider_domain,
 count(Event.event_id) as no_of_events_triggered from sandbox.fact_event Event
 left join sandbox.dim_user Userdata ON Event.user_id=Userdata.user_id 
-group by 1,2;
+group by 1,2,3;
 
 -----------------------------------------------Data Load into Reporting Table-------------------------------------------------------------------------
  
 insert into sandbox.rpt_event 
-SELECT fact_e.week_num,
+SELECT distinct fact_e.week_num,
        fact_e.user_id,
        agg.provider_domain,
        TRUNC(agg.no_of_events_triggered / domain_wise_events,3) AS provider_event_rate,

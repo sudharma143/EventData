@@ -1,5 +1,5 @@
 -------------------------------------------------Create Sandbox Schema---------------------------------------------------------
-CREATE SCHEMA sandbox;
+CREATE SCHEMA IF NOT EXISTS sandbox;
 -------------------------------------------------STAGING TABLES ----------------------------------------------------------------
 DROP TABLE IF EXISTS sandbox.stageUserData;---Stage Table for user data
 CREATE TABLE sandbox.stageUserData(
@@ -36,6 +36,7 @@ CREATE TABLE sandbox.dim_user(
 );
 
 -------------------------------------------------Event Fact Creation---------------------------------------------------------
+DROP VIEW IF EXISTS sandbox.rpt_active_users; -- Dependent view drop statement if running for the second time, This view has been created for task2.
 DROP TABLE if exists sandbox.fact_event;
 CREATE TABLE sandbox.fact_event(
    event_date DATE  NOT NULL 
@@ -46,6 +47,7 @@ CREATE TABLE sandbox.fact_event(
 );
 
 ------------------------------------------------Final Reporting table with all transformations------------------------------------------------------
+DROP VIEW IF EXISTS sandbox.v_rpt_event; -- Dependent view drop statement if running for the second time
 DROP TABLE IF EXISTS sandbox.rpt_event;
 
 CREATE TABLE sandbox.rpt_event
