@@ -14,4 +14,4 @@ The sql code mentioned in the Task 2 is dependent on Execution of all the sql co
 5. Output/Extract of the destination table has been provided in Task 1/Task1Export.csv for Task1 and Task 2/ActiveUsers.csv for Task2.
 
 
-**Note :** Insert statements for events and users data have been provisioned in the main branch.
+**Note :** Insert statements for events(event_data.sql) and users(user_data.sql) data have been provisioned in the main branch.
