@@ -1,3 +1,5 @@
+-------------------------------------------------Create Sandbox Schema---------------------------------------------------------
+CREATE SCHEMA sandbox;
 -------------------------------------------------STAGING TABLES ----------------------------------------------------------------
 DROP TABLE IF EXISTS sandbox.stageUserData;---Stage Table for user data
 CREATE TABLE sandbox.stageUserData(
